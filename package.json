@@ -1,0 +1,22 @@
+{
+  "name": "robot-room",
+  "version": "1.0.0",
+  "description": "Code to demonstrate an algorithm for a robot to cover a room",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/brianhyder/robot-room.git"
+  },
+  "author": "Brian Hyder",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/brianhyder/robot-room/issues"
+  },
+  "homepage": "https://github.com/brianhyder/robot-room#readme",
+  "dependencies": {
+    "clui": "^0.3.6"
+  }
+}
