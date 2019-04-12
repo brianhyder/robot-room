@@ -5,7 +5,8 @@ const NavigationService = require('./lib/services/navigationService');
 const UIService = require('./lib/services/uiService');
 
 //const grid = GridImportService.importSync('./examples/basic.txt');
-const grid = GridGeneratorService.newGrid(50, 20);
+const grid = GridImportService.importSync('./examples/killbox.txt');
+//const grid = GridGeneratorService.newGrid(50, 20);
 const uiService = new UIService(grid);
 const navService = new NavigationService(grid);
 uiService.render();
