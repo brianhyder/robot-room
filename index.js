@@ -5,29 +5,27 @@ const NavigationService = require('./lib/services/navigationService');
 const UIService = require('./lib/services/uiService');
 
 //const grid = GridImportService.importSync('./examples/basic.txt');
-const grid = GridImportService.importSync('./examples/killbox.txt');
-//const grid = GridGeneratorService.newGrid(50, 20);
+//const grid = GridImportService.importSync('./examples/killbox.txt');
+const grid = GridGeneratorService.newGrid(50, 20);
 const uiService = new UIService(grid);
 const navService = new NavigationService(grid);
 uiService.render();
 
+const q = [navService.getCurrentPosition()];
+const qNodes = node => {
+  [NavigationService.N, NavigationService.W, NavigationService.S, NavigationService.E].forEach(d => {
+    if (navService.peek(d) === GridUtils.FREE) {
+      q.unshift(navService.getPosition(d));
+    }
+  });
+};
 const _run = () => {
-  const priorities = [GridUtils.FREE, GridUtils.SEEN];
-  for (let priority of priorities) {
-    if (navService.peekForward() === priority) {
-      return navService.moveForward();
-    }
-    if (navService.peekLeft() === priority) {
-      return navService.moveLeft();
-    }
-    if (navService.peekBack() === priority) {
-      return navService.moveBack();
-    }
-    if (navService.peekRight === priority) {
-      return navService.moveRight();
-    }
+  if (q.length === 0) {
+    process.exit(0);
   }
-  return navService.moveBack();
+  const node = q.shift();
+  navService.moveTo(node);
+  qNodes(node);
 };
 const run = () => {
   _run();
